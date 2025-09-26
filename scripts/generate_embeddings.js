@@ -25,7 +25,7 @@ async function processFiles() {
 
     // Generar embedding
     const embeddingResponse = await openai.embeddings.create({
-      model: 'text-embedding-3-small', // o 'text-embedding-ada-002'
+      model: 'text-embedding-ada-002',
       input: content,
     });
 

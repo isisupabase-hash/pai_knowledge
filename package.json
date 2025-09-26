@@ -1,8 +1,10 @@
 {
   "name": "pai-knowledge",
   "version": "1.0.0",
+  "type": "module",
   "description": "Scripts para generar embeddings de los archivos MDX del proyecto PAI y almacenarlos en Supabase",
   "main": "scripts/generate_embeddings.js",
+
   "scripts": {
     "start": "node scripts/generate_embeddings.js",
     "test": "echo \"No tests defined\""
