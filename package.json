@@ -1,0 +1,27 @@
+{
+  "name": "pai-knowledge",
+  "version": "1.0.0",
+  "description": "Scripts para generar embeddings de los archivos MDX del proyecto PAI y almacenarlos en Supabase",
+  "main": "scripts/generate_embeddings.js",
+  "scripts": {
+    "start": "node scripts/generate_embeddings.js",
+    "test": "echo \"No tests defined\""
+  },
+  "keywords": [
+    "PAI",
+    "Supabase",
+    "embeddings",
+    "OpenAI",
+    "MDX"
+  ],
+  "author": "Hemerson Ballen",
+  "license": "MIT",
+  "dependencies": {
+    "@supabase/supabase-js": "^3.0.0",
+    "gray-matter": "^4.0.3",
+    "openai": "^4.10.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
