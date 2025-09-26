@@ -17,9 +17,9 @@
   "author": "Hemerson Ballen",
   "license": "MIT",
   "dependencies": {
-    "@supabase/supabase-js": "^3.0.0",
-    "gray-matter": "^4.0.3",
-    "openai": "^4.10.0"
+    "@supabase/supabase-js": "2.5.8",
+    "gray-matter": "4.0.3",
+    "openai": "5.23.0"
   },
   "engines": {
     "node": ">=18"
