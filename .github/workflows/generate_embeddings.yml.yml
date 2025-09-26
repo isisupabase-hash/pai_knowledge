@@ -1,0 +1,32 @@
+name: Generate Embeddings and Upload to Supabase
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'knowledge/**.mdx'
+      - 'knowledge/**.md'
+      - '.github/workflows/generate_embeddings.yml'
+
+jobs:
+  embeddings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Generate embeddings via supabase-embeddings-generator
+        uses: supabase/embeddings-generator@v0.0.5
+        with:
+          supabase-url: ${{ secrets.SUPABASE_URL }}               # Tu URL de Supabase
+          supabase-service-role-key: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          openai-key: ${{ secrets.OPENAI_KEY }}                   # Clave para generar embeddings
+          docs-root-path: 'knowledge'                             # carpeta raíz donde están los .mdx
+          table: 'pai_documents'                                   # nombre de la tabla vectorial que usamos
+          content-column: 'content'                               # columna donde se guarda el contenido
+          id-column: 'id'                                         # columna PK
+          embedding-column: 'embedding'                           # columna vector(…) donde se guarda embedding
+          metadata-column: 'metadata'                             # (opcional) donde guardar metadata si lo necesitas
+          incremental: true                                        # sólo procesar archivos modificados (opcional)
