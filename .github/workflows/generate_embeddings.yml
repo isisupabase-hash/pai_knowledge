@@ -14,4 +14,4 @@ jobs:
           supabase-url: 'https://ulgftptljdmyomxexuwb.supabase.co'
           supabase-service-role-key: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           openai-key: ${{ secrets.OPENAI_KEY }}
-          docs-root-path: 'docs' # the path to the root of your md(x) files
+          docs-root-path: 'knowledge' # the path to the root of your md(x) files
