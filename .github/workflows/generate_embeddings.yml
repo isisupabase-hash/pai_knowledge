@@ -1,17 +1,36 @@
-name: 'generate_embeddings'
-on: # run on main branch changes
+name: Generate Embeddings
+
+on:
   push:
     branches:
       - main
+    paths:
+      - 'knowledge/**.mdx'
+      - 'scripts/generate_embeddings.js'
 
 jobs:
-  generate:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v3
-      - uses: supabase/embeddings-generator@v0.0.5 # Find the latest version in the Marketplace
+      # 1. Clonar el repo
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Instalar Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          supabase-url: 'https://ulgftptljdmyomxexuwb.supabase.co'
-          supabase-service-role-key: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-          openai-key: ${{ secrets.OPENAI_KEY }}
-          docs-root-path: 'knowledge' # the path to the root of your md(x) files
+          node-version: 20
+
+      # 3. Instalar dependencias
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Ejecutar el script
+      - name: Run embeddings script
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/generate_embeddings.js
